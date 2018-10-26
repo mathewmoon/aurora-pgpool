@@ -12,5 +12,5 @@
   <tr><td><b>$PGALLOWED_SUBNET</b></td><td>Subnet you want to allow access from. Use 0.0.0.0/0 for any</td></tr>
 </table>  
 
-The Docker file copies in the included config. If you want to make any other changes in config dynamically you can easily use sed the same way I did to make changes based on environment variables.
+The Docker file copies in the included config. If you want to make any other changes in config dynamically you can easily use sed the same way I did to make changes based on environment variables. Things are left pretty much stock and created with the intention of managing a single database.
 
