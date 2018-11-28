@@ -34,8 +34,12 @@ if [ $? -gt 0 ]; then
 	echo "Could not set config variables" && exit 1
 fi
 
-if ! /usr/bin/pg_md5 -m -u $PGUSER $PGPASSWORD; then
-	echo "Could not generate pool_passwd" && exit 1
-fi
+FILE=$(env|grep PGUSER|sed -e 's#^.*=##g' -e 's#/# #g')
+while read line; do
+  pg_md5 -m -u $line
+done <<EOF
+$FILE
+EOF
+
 
 /usr/bin/pgpool -n -f /etc/pgpool.conf -a /etc/pool_hba.conf 2>&1
